@@ -1,9 +1,19 @@
 from typing import TypedDict
+
 from src.services.todo.create import CreateTodoService
+from src.services.todo.get_all import GetAllTodoService
 
-ITodoService = TypedDict('ITodoService', {'create': CreateTodoService})
+ITodoServices = TypedDict(
+    'ITodoServices',
+    {
+        'getAll': GetAllTodoService,
+        'create': CreateTodoService,
+    }
+)
 
-def providerTodoService() -> ITodoService:
+
+def providerTodoService() -> ITodoServices:
     return {
-        'create': CreateTodoService()
+        'getAll': GetAllTodoService(),
+        'create': CreateTodoService(),
     }
