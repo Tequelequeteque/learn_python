@@ -1,15 +1,13 @@
 from flask_restful import Resource
 
-from src.services.todo.create import CreateTodoService
-from src.services.todo.get_all import GetAllTodoService
+from src.services.todo import ITodoServices
 
 
 class TodoController(Resource):
 
     def __init__(
         self,
-        *args,
-        **kwargs,
+        **kwargs: ITodoServices,
     ):
         self.create = kwargs['create']
         self.get_all = kwargs['getAll']
