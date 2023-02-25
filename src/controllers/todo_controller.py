@@ -7,10 +7,10 @@ class TodoController(Resource):
 
     def __init__(
         self,
-        **kwargs: ITodoServices,
+        todoServices: ITodoServices,
     ):
-        self.create = kwargs['create']
-        self.get_all = kwargs['getAll']
+        self.create = todoServices['create']
+        self.get_all = todoServices['getAll']
 
     def get(self, *args, **kwargs):
         return self.get_all.execute()

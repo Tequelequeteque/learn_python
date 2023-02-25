@@ -1,5 +1,8 @@
 version: '3'
 
+networks:
+    default:
+
 services:
     api:
         container_name: api
@@ -12,3 +15,18 @@ services:
             - .:/app
         ports:
             - '${PORT}:${PORT}'
+        networks:
+            - default
+        depends_on:
+            - db
+
+    db:
+        container_name: db
+        image: postgres:alpine
+        env_file: .env
+        environment:
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASS}
+            - POSTGRES_DB=${DB_NAME}
+        networks:
+            - default
