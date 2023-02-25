@@ -12,8 +12,8 @@ class TodoController(Resource):
         self.create = todoServices['create']
         self.get_all = todoServices['getAll']
 
-    def get(self, *args, **kwargs):
+    def get(self):
         return self.get_all.execute()
 
-    def post(self, *args, **kwargs):
+    def post(self):
         return self.create.execute()
